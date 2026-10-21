@@ -1,4 +1,5 @@
 import pickle
+import numpy as np
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from ml.data import process_data
 # TODO: add necessary import
@@ -20,6 +21,11 @@ def train_model(X_train, y_train):
         Trained machine learning model.
     """
     # TODO: implement the function
+    model = #initialize model
+    model.fit(X_train, y_train)
+
+    return model
+
     pass
 
 
@@ -60,6 +66,11 @@ def inference(model, X):
         Predictions from the model.
     """
     # TODO: implement the function
+    X = np.asarray(X)
+
+    preds = model.predict(X)
+
+    return preds
     pass
 
 def save_model(model, path):
@@ -73,11 +84,19 @@ def save_model(model, path):
         Path to save pickle file.
     """
     # TODO: implement the function
+    with open(path, 'wb') as file:
+        pickle.dump(model, file)
+
+    print(f'Model successfully saved to {path}')
+
     pass
 
 def load_model(path):
     """ Loads pickle file from `path` and returns it."""
     # TODO: implement the function
+    with open(path, 'rb') as file:
+        return pickle.load(file)
+    
     pass
 
 
