@@ -22,15 +22,21 @@ Ops task 2 submission for Deploying a Machine Learning Model with FastAPI.
 * dataset comes from UC Irvine Machine learning Repository
 * dataset composed from 1994 Census Database
 * Features used: Workclass, education, marital-status, occupation, relationship,race, sex, and native-country
+* data cleaning: removed white space, converted and removed missing values
+* split on train/test is 80/20
 * 
 
 
 ## Evaluation Data
-
+Evaluation data is a held out portion of the original dataset
 ## Metrics
 Overall model metrics: Precision: 0.7419 | Recall: 0.6384 | F1: 0.6863
 
 ## Ethical Considerations
-
+* historical census data can reflect past societal biases.
+* Risk of disparate impact if used for any real decision-making.
+* Data set contains protected attributes (race, sex, native-country)
 
 ## Caveats and Recommendations
+* it is recommended that this model not be used for real-world decision-making.
+* 
