@@ -16,7 +16,7 @@ def test_compute_model_metrics():
     preds = np.array([1, 0, 0, 1])
     precision, recall, fbeta = compute_model_metrics(y, preds)
     assert precision == pytest.approx(0.5)
-    assert  recall == pytest.approx(0.5)
+    assert recall == pytest.approx(0.5)
     assert fbeta == pytest.approx(0.5)
 
     # Asymmetric case
