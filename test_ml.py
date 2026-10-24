@@ -1,3 +1,4 @@
+import pytest
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
@@ -7,15 +8,25 @@ from ml.data import process_data
 
 def test_compute_model_metrics():
     """
-    This test verifies evaluation metrics.  it checks if precision, recall, and F-beta fall
-    within the standard valid range of 0-1.
+    This test verifies evaluation metrics.  It checks if compute_mopdel_metrics returns the correct precision,
+    recall, and F1-beta for known label/ prediction pairs
     """
+    # Symmetric case
     y = np.array([1, 1, 0, 0])
     preds = np.array([1, 0, 0, 1])
     precision, recall, fbeta = compute_model_metrics(y, preds)
-    assert 0 <= precision <= 1
-    assert 0 <= recall <= 1
-    assert 0 <= fbeta <= 1
+    assert precision == pytest.approx(0.5)
+    assert  recall == pytest.approx(0.5)
+    assert fbeta == pytest.approx(0.5)
+
+    # Asymmetric case
+    # TP=2, FP=1, FN=0 -- precision=2/3, recall=1.0, F1=0.8
+    y2 = np.array([1, 1, 0, 0])
+    preds2 = np.array([1, 1, 1, 0])
+    precision2, recall2, fbeta2 = compute_model_metrics(y2, preds2)
+    assert precision2 == pytest.approx(2/3)
+    assert recall2 == pytest.approx(1.0)
+    assert fbeta2 == pytest.approx(0.8)
 
 
 def test_inference():
