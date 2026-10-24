@@ -5,6 +5,7 @@ from pydantic import BaseModel, Field
 from ml.data import apply_label, process_data
 from ml.model import inference, load_model
 
+
 # DO NOT MODIFY
 class Data(BaseModel):
     age: int = Field(..., example=37)
@@ -24,7 +25,8 @@ class Data(BaseModel):
     hours_per_week: int = Field(..., example=40, alias="hours-per-week")
     native_country: str = Field(..., example="United-States", alias="native-country")
 
-#set encoder/model paths
+
+# set encoder/model paths
 path = "model/encoder.pkl"
 encoder = load_model(path)
 
@@ -33,14 +35,14 @@ model = load_model(path)
 
 app = FastAPI()
 
-#GET welcome message
+
+# GET welcome message
 @app.get("/")
 async def get_root():
     """ Say hello!"""
     return {"Message": "Welcome to the Census Income Prediction API!"}
 
 
-# TODO: create a POST on a different path that does model inference
 @app.post("/data/")
 async def post_inference(data: Data):
     # DO NOT MODIFY: turn the Pydantic model into a dict.

@@ -18,13 +18,13 @@ data_path = os.path.join(project_path, "data", "census.csv")
 print(data_path)
 data = pd.read_csv(data_path, skipinitialspace=True)
 
-#handle ? values
+# handle ? values
 data = data.replace("?", pd.NA)
 data = data.dropna(subset=["workclass", "occupation", "native-country"])
 
 # TODO: split the provided data to have a train dataset and a test dataset
 # Optional enhancement, use K-fold cross validation instead of a train-test split.
-train, test = train_test_split(data,test_size=.20, random_state=42)# Your code here
+train, test = train_test_split(data, test_size=.20, random_state=42)  # Your code here
 
 # DO NOT MODIFY
 cat_features = [
@@ -44,10 +44,6 @@ X_train, y_train, encoder, lb = process_data(
     categorical_features=cat_features,
     label="salary",
     training=True,
-    # your code here
-    # use the train dataset 
-    # use training=True
-    # do not need to pass encoder and lb as input
     )
 
 X_test, y_test, _, _ = process_data(
@@ -60,7 +56,7 @@ X_test, y_test, _, _ = process_data(
 )
 
 # TODO: use the train_model function to train the model on the training dataset
-model = train_model(X_train, y_train) # your code here
+model = train_model(X_train, y_train)  # your code here
 
 # save the model and the encoder
 model_path = os.path.join(project_path, "model", "model.pkl")
@@ -71,10 +67,10 @@ save_model(encoder, encoder_path)
 # load the model
 model = load_model(
     model_path
-) 
+)
 
 # TODO: use the inference function to run the model inferences on the test dataset.
-preds = inference(model,X_test) # your code here
+preds = inference(model, X_test)  # your code here
 
 # Calculate and print the metrics
 p, r, fb = compute_model_metrics(y_test, preds)

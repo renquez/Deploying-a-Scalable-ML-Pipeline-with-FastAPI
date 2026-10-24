@@ -1,4 +1,3 @@
-import pytest
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
@@ -13,11 +12,10 @@ def test_compute_model_metrics():
     """
     y = np.array([1, 1, 0, 0])
     preds = np.array([1, 0, 0, 1])
-    precision, recall, fbeta = compute_model_metrics(y,preds)
+    precision, recall, fbeta = compute_model_metrics(y, preds)
     assert 0 <= precision <= 1
     assert 0 <= recall <= 1
     assert 0 <= fbeta <= 1
-
 
 
 def test_inference():
@@ -25,7 +23,7 @@ def test_inference():
     This test creates a small pipeline to test the results of the inference pipeline
     and ensure that predictions are returned in the expected format.
     """
-    #set small model
+    # set small model
     model = RandomForestClassifier(n_estimators=2, random_state=42)
     X = np.array([[1, 0], [0, 1], [1, 1]])
     y = np.array([0, 1, 0])
@@ -33,7 +31,6 @@ def test_inference():
     preds = inference(model, X)
     assert len(preds) == 3
     assert set(preds).issubset({0, 1})
-
 
 
 def test_process_data():

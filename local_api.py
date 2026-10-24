@@ -1,4 +1,3 @@
-import json
 import requests
 
 #
@@ -6,7 +5,8 @@ r = requests.get("http://127.0.0.1:8000")
 print("Status Code:", r.status_code)
 print("Result:", r.json())
 
-print() #add spacer
+print()  # add spacer
+
 
 data = {
     "age": 37,
@@ -25,7 +25,7 @@ data = {
     "native-country": "United-States",
 }
 
-# TODO: send a POST using the data above
+
 r = requests.post("http://127.0.0.1:8000/data/", json=data)
 print("Status Code:", r.status_code)
 print("Result:", r.json())
